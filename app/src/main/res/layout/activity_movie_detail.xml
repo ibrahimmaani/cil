@@ -55,8 +55,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_below="@+id/custom_toolbar"
-                    android:background="@color/gray"
-                    android:scaleType="centerCrop"/>
+                    android:layout_marginTop="@dimen/margin_super_large"
+                    android:scaleType="fitCenter"/>
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -65,7 +65,7 @@
                     android:layout_below="@+id/img_movie"
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_large"
-                    android:text="title movie"
+                    android:text=""
                     android:textColor="@color/trueBlack"
                     android:textSize="@dimen/text_size_super_large" />
 
@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="genre"
+                        android:text=""
                         android:textColor="@color/trueBlack"
                         android:textSize="@dimen/text_size_medium" />
 
@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="@dimen/margin_medium"
-                        android:text="1h 55m"
+                        android:text=""
                         android:textColor="@color/trueBlack"
                         android:textSize="@dimen/text_size_medium" />
 
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="2017"
+                        android:text=""
                         android:textColor="@color/trueBlack"
                         android:textSize="@dimen/text_size_medium" />
 
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="@dimen/margin_medium"
-                        android:text="8.1"
+                        android:text=""
                         android:textColor="@color/trueBlack"
                         android:textSize="@dimen/text_size_medium" />
 
@@ -138,7 +138,7 @@
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_super_large"
                     android:layout_marginBottom="@dimen/margin_large"
-                    android:text="adasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsaadasdasdasdsa"
+                    android:text=""
                     android:textColor="@color/trueBlack" />
 
             </LinearLayout>

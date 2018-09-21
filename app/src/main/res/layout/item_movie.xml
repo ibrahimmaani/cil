@@ -43,47 +43,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:text="title movie"
                     android:textSize="@dimen/text_size_super_large"
                     android:textColor="@color/trueBlack" />
 
-                <LinearLayout
-                    android:id="@+id/layout_tv"
-                    android:layout_below="@+id/tv_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_genre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="genre"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textColor="@color/trueBlack" />
-
-                    <TextView
-                        android:id="@+id/tv_duration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="@dimen/margin_medium"
-                        android:text="1h 55m"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textColor="@color/trueBlack" />
-
-                </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_year"
-                    android:layout_below="@+id/layout_tv"
+                    android:layout_below="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:text="2017"
                     android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/trueBlack" />
@@ -94,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_super_large"
                     android:layout_marginBottom="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_super_large"
                     android:text="Detail"

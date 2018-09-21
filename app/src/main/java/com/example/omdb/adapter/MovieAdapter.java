@@ -1,4 +1,4 @@
-package com.example.omdb;
+package com.example.omdb.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +10,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.omdb.R;
+import com.example.omdb.object.Movie;
+import com.example.omdb.views.MovieDetailActivity;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolderAdapter> {
     public Context mContext;
+    public List<Movie> movieList;
 
-    public MovieAdapter(Context mContext) {
+    public MovieAdapter(Context mContext,List<Movie> movieList) {
         this.mContext = mContext;
+        this.movieList = movieList;
     }
 
     @Override
@@ -29,10 +38,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolderAd
     @Override
     public void onBindViewHolder(final MovieAdapter.ViewHolderAdapter holder, int position) {
 
+        final Movie movie = movieList.get(position);
+
+        if(movie.poster != null && movie.poster.length() > 0) {
+            Glide.with(mContext).load(movie.poster).into(holder.imgMovie);
+        }
+        holder.tvTitle.setText(movie.title);
+        holder.tvYear.setText(movie.year);
+
         holder.tvDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                Intent intent = new Intent(mContext, MovieDetailActivity.class).putExtra(Intent.EXTRA_TITLE, movie.title);
                 mContext.startActivity(intent);
             }
         });
@@ -40,7 +57,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolderAd
 
     @Override
     public int getItemCount() {
-        return 10;
+        if (movieList !=null){
+        }else {
+            return 0;
+        }
+        return movieList.size();
     }
 
     class ViewHolderAdapter extends RecyclerView.ViewHolder {
@@ -53,12 +74,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolderAd
 
         @BindView(R.id.tv_title)
         TextView tvTitle;
-
-        @BindView(R.id.tv_genre)
-        TextView tvGenre;
-
-        @BindView(R.id.tv_duration)
-        TextView tvDuration;
 
         @BindView(R.id.tv_year)
         TextView tvYear;
