@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.omdb.controller.MovieController;
 import com.example.omdb.R;
+import com.example.omdb.controller.MovieController;
 import com.example.omdb.object.Movie;
 
 import butterknife.BindView;

@@ -1,7 +1,7 @@
 package com.example.omdb.views;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +12,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.omdb.adapter.MovieAdapter;
-import com.example.omdb.controller.MovieController;
-import com.example.omdb.object.MovieResp;
 import com.example.omdb.R;
 import com.example.omdb.object.Movie;
-import com.example.omdb.services.ApiClient;
 import com.example.omdb.services.ApiInterface;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -25,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MovieActivity extends AppCompatActivity {
+public class MovieActivity extends AppCompatActivity implements MovieView {
 
     @BindView(R.id.list_movie)
     RecyclerView listMovie;
@@ -41,14 +38,17 @@ public class MovieActivity extends AppCompatActivity {
 
 
     private ApiInterface mInterfaceService;
+    private MoviePresenter moviePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         ButterKnife.bind(this);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        mInterfaceService = ApiClient.getClient().create(ApiInterface.class);
+        moviePresenter = new MoviePresenter(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("search movie");
@@ -66,9 +66,8 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
 
-    searchClicked();
-
-
+        searchClicked();
+        this.moviePresenter = new MoviePresenter(MovieActivity.this);
     }
 
 
@@ -76,7 +75,8 @@ public class MovieActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                new SearchMovie(query).execute();
+                System.out.println("Query"+ query);
+                moviePresenter.getMovie(query);
                 return false;
             }
 
@@ -85,53 +85,46 @@ public class MovieActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
 
-    public class SearchMovie extends AsyncTask<Void, Void, MovieResp>{
-
-        private MovieController controller;
-        private String imdbId;
-        private MovieResp movieResp;
-
-
-        public SearchMovie (String imdbId){
-            this.imdbId = imdbId;
-        }
-
-
-        @Override
-        protected void onPreExecute(){
-            controller = new MovieController((MovieActivity.this));
-        }
-
-
-        @Override
-        protected MovieResp doInBackground(Void... voids) {
-            movieResp = controller.getMovie(imdbId);
-            return movieResp;
-        }
-        @Override
-        protected void onPostExecute(MovieResp movieResp) {
-
-            if(movieResp.success){
-//                Toast.makeText(MovieActivity.this, movieResp.message, Toast.LENGTH_SHORT).show();
-                searchView.setVisibility(View.VISIBLE);
-                searchView.setVisibility(View.GONE);
-
-
-
-                initListMovie(movieResp.movieList);
-
-            } else {
-//                Toast.makeText(MovieActivity.this, movieResp.message, Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-    }
+//    public class SearchMovie extends AsyncTask<Void, Void, MovieResp>{
+//
+//        private MovieController controller;
+//        private String imdbId;
+//        private MovieResp movieResp;
+//
+//
+//        public SearchMovie (String imdbId){
+//            this.imdbId = imdbId;
+//        }
+//
+//
+//        @Override
+//        protected void onPreExecute(){
+//            controller = new MovieController((MovieActivity.this));
+//        }
+//
+//
+//        @Override
+//        protected MovieResp doInBackground(Void... voids) {
+//            movieResp = controller.getMovie(imdbId);
+//            return movieResp;
+//        }
+//        @Override
+//        protected void onPostExecute(MovieResp movieResp) {
+//
+//            if(movieResp.success){
+////                Toast.makeText(MovieActivity.this, movieResp.message, Toast.LENGTH_SHORT).show();
+//
+//
+//            } else {
+////                Toast.makeText(MovieActivity.this, movieResp.message, Toast.LENGTH_SHORT).show();
+//            }
+//
+//        }
+//
+//    }
 
 
     @Override
@@ -148,6 +141,22 @@ public class MovieActivity extends AppCompatActivity {
         listMovie.setLayoutManager(layoutManager);
         listMovie.setAdapter(movieAdapter);
         movieAdapter.notifyDataSetChanged();
+    }
 
+//    @Override
+//    public void getMovie(String title) {
+//
+//    }
+//
+//    @Override
+//    public void getDetailMovie(String title) {
+//
+//    }
+
+    @Override
+    public void showMovie(List<Movie> listMovie) {
+        searchView.setVisibility(View.VISIBLE);
+        searchView.setVisibility(View.GONE);
+        initListMovie(listMovie);
     }
 }
