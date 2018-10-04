@@ -68,8 +68,8 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     @Override
     public void showDetailMovie(Movie movie) {
         Glide.with(MovieDetailActivity.this)
-                    .load(movie.poster)
-                    .into(imgMovie);
+                .load(movie.poster)
+                .into(imgMovie);
 
         tvYear.setText(movie.year);
         tvGenre.setText(movie.genre);

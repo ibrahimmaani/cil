@@ -1,8 +1,4 @@
-package com.example.omdb.services;
-
-import com.example.omdb.object.MovieResp;
-import com.example.omdb.object.Movie;
-
+package com.example.omdb.model;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

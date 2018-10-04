@@ -1,4 +1,4 @@
-package com.example.omdb.object;
+package com.example.omdb.model;
 
 import com.google.gson.annotations.SerializedName;
 

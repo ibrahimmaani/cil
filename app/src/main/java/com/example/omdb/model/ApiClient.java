@@ -1,4 +1,4 @@
-package com.example.omdb.services;
+package com.example.omdb.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

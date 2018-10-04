@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.omdb.R;
-import com.example.omdb.object.Movie;
-import com.example.omdb.views.MovieDetailActivity;
+import com.example.omdb.model.Movie;
+import com.example.omdb.detailmovie.MovieDetailActivity;
 
 import java.util.List;
 
