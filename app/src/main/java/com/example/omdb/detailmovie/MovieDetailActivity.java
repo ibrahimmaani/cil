@@ -1,7 +1,6 @@
-package com.example.omdb.views;
+package com.example.omdb.detailmovie;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.omdb.controller.MovieController;
 import com.example.omdb.R;
-import com.example.omdb.object.Movie;
+import com.example.omdb.model.Movie;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity implements MovieDetailView {
 
     @BindView(R.id.btn_back)
     ImageView btnBack;
@@ -46,26 +44,18 @@ public class MovieDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_description)
     TextView tvDescription;
 
-    Movie movie;
-
+    private MovieDetailPresenter movieDetailPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.bind(this);
-
         String title;
         title = getIntent().getStringExtra(Intent.EXTRA_TITLE);
-        new DetailMovie(title).execute();
-
-
-
         tvTitle.setText(title);
-
-
-
-
+        movieDetailPresenter = new MovieDetailPresenter(MovieDetailActivity.this);
+        movieDetailPresenter.getDetail(title);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,44 +65,16 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
     }
 
-
-    public class DetailMovie extends AsyncTask<Void, Void, Movie> {
-
-        private MovieController controller;
-        private String imdbId;
-        private Movie movie;
-
-        public DetailMovie(String imdbId) {
-            this.imdbId = imdbId;
-        }
-
-
-        @Override
-        protected void onPreExecute() {
-            controller = new MovieController((MovieDetailActivity.this));
-        }
-
-
-        @Override
-        protected Movie doInBackground(Void... voids) {
-            movie = controller.getDetail(imdbId);
-            return movie;
-        }
-
-        @Override
-        protected void onPostExecute(Movie movie) {
-
-            Glide.with(MovieDetailActivity.this)
+    @Override
+    public void showDetailMovie(Movie movie) {
+        Glide.with(MovieDetailActivity.this)
                     .load(movie.poster)
                     .into(imgMovie);
 
-            tvYear.setText(movie.year);
-            tvGenre.setText(movie.genre);
-            tvDuration.setText(movie.runtime);
-            tvRating.setText(movie.imdbRating);
-            tvDescription.setText(movie.plot);
-
-        }
-
+        tvYear.setText(movie.year);
+        tvGenre.setText(movie.genre);
+        tvDuration.setText(movie.runtime);
+        tvRating.setText(movie.imdbRating);
+        tvDescription.setText(movie.plot);
     }
 }
